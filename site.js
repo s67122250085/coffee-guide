@@ -103,7 +103,7 @@
     targetProgress = Math.max(0, Math.min(1, -introRect.top / introTravel));
     // Keep scroll-linked storytelling available in reduced-motion mode, but
     // remove interpolation lag so the response remains predictable.
-    easedProgress = reduceMotion ? targetProgress : easedProgress + (targetProgress - easedProgress) * .2;
+    easedProgress = reduceMotion ? targetProgress : easedProgress + (targetProgress - easedProgress) * .32;
     const progress = easedProgress;
     introScroll.style.setProperty('--intro-progress', progress.toFixed(3));
     introCopy.style.transform = `translate3d(${-progress * 40}px, ${-progress * 110}px, 0)`;

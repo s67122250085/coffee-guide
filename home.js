@@ -24,7 +24,7 @@
     target = Math.max(0, Math.min(1, -bounds.top / travel));
     // This scene is scroll-driven (never autoplayed). Reduced-motion users
     // still get the requested effect, without interpolation lag.
-    current = reduceMotion ? target : current + (target - current) * .2;
+    current = reduceMotion ? target : current + (target - current) * .32;
     intro.style.setProperty('--intro-progress', current.toFixed(3));
     copy.style.transform = `translate3d(${-current * 40}px,${-current * 110}px,0)`;
     copy.style.opacity = String(Math.max(0, 1 - current * 1.65));
