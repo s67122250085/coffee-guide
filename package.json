@@ -1,0 +1,10 @@
+{
+  "name": "coffee-guide",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Coffee Guide website powered by Node.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  }
+}
