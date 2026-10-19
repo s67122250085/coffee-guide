@@ -13,7 +13,6 @@ const catalogSettings = {
     intro: <>Every bean<br />has <em>a story.</em></>,
     description: 'เริ่มรู้จักกาแฟจากต้นทาง สำรวจสายพันธุ์ แหล่งปลูก และรสชาติที่แตกต่างกันในแต่ละแก้ว',
     headline: 'Meet the varieties', imageFolder: 'coffee', firstImage: 'C001.webp',
-    ticker: ['Origin shapes flavor', 'Know your beans', 'Grown in Thailand'],
     helper: 'แต่ละรายการจะค่อย ๆ เข้ามาในเรื่องราวเมื่อคุณเลื่อน ภาพด้านข้างจะเปลี่ยนตามสายพันธุ์ที่กำลังอ่าน',
     search: 'ค้นหาชื่อ รสชาติ หรือจังหวัด...',
   },
@@ -23,7 +22,6 @@ const catalogSettings = {
     intro: <>Find your<br /><em>next favorite.</em></>,
     description: 'จากเอสเพรสโซเข้มข้นไปจนถึงแก้วเย็นสดชื่น สำรวจเมนูกาแฟและค้นหารสชาติที่เข้ากับวันของคุณ',
     headline: 'Something to sip', imageFolder: 'menu', firstImage: 'M001.webp',
-    ticker: ['Something to sip', 'Made for curious sips', 'Your next favorite'],
     helper: 'เลื่อนดูทีละเมนู ภาพและรายละเอียดจะเปลี่ยนตามรายการที่อยู่ตรงกลางหน้าจอ',
     search: 'ค้นหาชื่อหรือรสชาติ...',
   },
@@ -99,11 +97,10 @@ export default function CatalogPage({ kind }) {
           count={<>{title} <b>{records.length}</b> เรื่องราว</>} marker={settings.marker}
           image={introRecord ? imagePath(introRecord) : `/images/${settings.imageFolder}/${settings.firstImage}`}
           alt={introRecord?.name_en || title} label="SCROLL TO EXPLORE" />
-        <Ticker phrases={settings.ticker} />
+        <Ticker />
         <section id="catalog" className="shell" ref={sectionRef} style={{ '--story-progress': progress }}>
           <div className="catalog-intro">
             <div><div className="eyebrow">A closer look</div><h2>{settings.headline}</h2></div>
-            <p>{settings.helper}</p>
           </div>
           <div className="catalog-tools">
             <span className="catalog-count" aria-live="polite">
@@ -156,7 +153,6 @@ function StoryCard({ item, index, total, kind, active, visible }) {
         <div className="story-fact"><dt>{typeLabel}</dt><dd>{typeValue}</dd></div>
         <div className="story-fact"><dt>แหล่งข้อมูล</dt><dd>{item.source || 'ไม่ระบุ'}</dd></div>
       </dl>
-      <div className="story-ending"><span>จบข้อมูลรายการนี้</span><span>{index + 1 < total ? `รายการที่ ${String(index + 2).padStart(2, '0')} ต่อไป ↓` : 'จบรายการทั้งหมด ✦'}</span></div>
     </article>
   );
 }
