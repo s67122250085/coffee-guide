@@ -45,7 +45,7 @@ npm run dev
 
 ```bash
 npm run build
-firebase deploy --only hosting,database
+firebase deploy --only hosting --project coffeeguide-7fc30
 ```
 
 ตรวจ project ที่ Firebase CLI เลือกก่อน deploy ทุกครั้ง
@@ -61,5 +61,8 @@ firebase deploy --only hosting,database
 - **ทำแล้ว:** สำรองข้อมูลก่อนปรับไว้ที่ `data/firebase-backup-before-normalization.json` (ไฟล์ถูก ignore โดย Git) และจัดข้อมูล Realtime Database เป็นสายพันธุ์ C001–C010 กับเมนู M001–M020
 - **ทำแล้ว:** เผยแพร่กฎ Firebase ให้สาธารณะอ่านได้เฉพาะ `coffee_varieties` และ `coffee_menu`; ปิดการอ่านที่ root และปิดการเขียนทั้งหมด
 - **ทำแล้ว:** ทดสอบแอปอ่านข้อมูลจริงจาก Firebase ได้ครบ 10 สายพันธุ์และ 20 เมนู และ `npm run build` ผ่าน
-- **ยังต้องทำ:** deploy Firebase Hosting และทดสอบ URL สาธารณะ
-- **ยังต้องทำ:** รวบรวมผลทดสอบ/ภาพหลักฐาน, รายงาน PDF, สไลด์นำเสนอ และวิดีโอ demo
+- **ทำแล้ว (ข้อ 5):** สร้าง production build และ deploy Firebase Hosting แล้ว; ตรวจ URL สาธารณะและไฟล์รูป; Hosting URL คือ https://coffeeguide-7fc30.web.app/
+- **ทำแล้ว (ข้อ 6):** จัดทำเอกสารส่งมอบใน `documents/PROJECT_HANDOFF.md` และรายงาน PDF ใน `output/pdf/`
+- **ยังต้องทำ (ข้อ 7):** เตรียมสไลด์นำเสนอและวิดีโอสาธิตระบบ รวมถึงซ้อมนำเสนอ
+
+Repository เป็น Private ผู้สอนต้องได้รับสิทธิ์ Collaborator เพื่อเปิด Source Code; Hosting URL เปิดสาธารณะได้
