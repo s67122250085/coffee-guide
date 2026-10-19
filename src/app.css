@@ -54,7 +54,7 @@
   .nav { padding-inline: 15px; }
   .brand { gap: 7px; font-size: 10px; }
   .brand img { width: 30px; height: 30px; }
-  .nav-links { gap: 9px; font-size: 9px; }
+  .nav-links { gap: clamp(8px, 2vw, 10px); font-size: clamp(10px, 2.8vw, 12px); }
   .intro-scroll { height: 155svh; }
   .intro-sticky { min-height: 540px; }
   .intro-layout { gap: 4px; align-content: center; padding-top: 12px; }

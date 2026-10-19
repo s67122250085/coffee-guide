@@ -1,6 +1,7 @@
 import { get, ref } from 'firebase/database';
 import localCoffeeData from '../../data/coffee.json';
 import { database, firebaseReady } from './firebase.js';
+import { validateCoffeeData } from './validateCoffeeData.mjs';
 
 function normalizeCollection(value) {
   if (Array.isArray(value)) return value;
@@ -24,6 +25,13 @@ export async function loadCoffeeData() {
     }
     if (!varieties.exists() || !menu.exists()) {
       throw new Error('ยังไม่พบข้อมูลสายพันธุ์หรือเมนูครบทั้งสองรายการใน Firebase');
+    }
+    const validation = validateCoffeeData({
+      coffee_varieties: varieties.val(),
+      coffee_menu: menu.val(),
+    });
+    if (!validation.valid) {
+      throw new Error(`ข้อมูล Firebase ไม่ครบหรือรูปแบบไม่ถูกต้อง: ${validation.errors[0]}`);
     }
     return {
       data: { Coffee_Varietals: varietyRecords, Coffee_Menu: menuRecords },

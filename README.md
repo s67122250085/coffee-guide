@@ -11,6 +11,8 @@ npm run dev
 
 เปิด URL ที่ Vite แสดงใน Terminal สร้างไฟล์สำหรับ production ด้วย `npm run build` และตรวจ bundle ด้วย `npm run preview`
 
+รันทดสอบตรวจรูปแบบข้อมูล Firebase ด้วย `npm test`
+
 ## หน้าและไฟล์หลัก
 
 | Route | เนื้อหา | ไฟล์หลัก |
@@ -52,6 +54,8 @@ firebase deploy --only hosting,database
 
 - **ทำแล้ว:** เก็บข้อมูล รูปภาพ การค้นหา และรายละเอียดกาแฟเดิมไว้ พร้อมย้าย UI มาเป็น React components
 - **ทำแล้ว (ข้อ 3):** พัฒนาหน้า Home/สายพันธุ์/เมนูด้วย React components และ Routing; เชื่อม Firebase; แสดงรายละเอียดเป็นเรื่องราวตามการเลื่อน; ค้นหาได้; มีสถานะ loading/ไม่พบข้อมูล/error; และจัด responsive layout
+- **ทำแล้ว (ข้อ 4):** ทดสอบ User Flow และทั้ง 3 Route; ทดสอบค้นหาและกรณีไม่พบผลลัพธ์; เพิ่มการตรวจรูปแบบ record Firebase พร้อม unit tests สำหรับข้อมูลถูกต้องและผิดรูปแบบ; ตรวจ Responsive ที่ 320, 390, 768 และ 1365px โดยไม่พบ horizontal overflow; แก้ขนาดตัวอักษรเมนูบนมือถือ
+- **ผลทดสอบล่าสุด:** `npm test` ผ่าน 4/4 กรณี, `npm run build` ผ่าน, และไม่พบ console warning/error ระหว่างตรวจหน้าเว็บ
 - **เตรียมแล้ว:** ไฟล์ JSON สำหรับ import, ตัวอ่าน Firebase Realtime Database, ตัวอย่าง environment config, Firebase Hosting rewrite และ rules แบบ read-only
 - **ทำแล้ว:** พบ Firebase Project จริงและลงทะเบียน Web App `Coffee Guide Web`; config อยู่ใน `.env.local` ซึ่งไม่ถูก commit
 - **ทำแล้ว:** สำรองข้อมูลก่อนปรับไว้ที่ `data/firebase-backup-before-normalization.json` (ไฟล์ถูก ignore โดย Git) และจัดข้อมูล Realtime Database เป็นสายพันธุ์ C001–C010 กับเมนู M001–M020
