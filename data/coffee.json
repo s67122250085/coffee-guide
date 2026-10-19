@@ -1,0 +1,306 @@
+{
+  "Coffee_Varietals": [
+    {
+      "coffee_id": "C001",
+      "name_th": "คาติมอร์",
+      "name_en": "Catimor",
+      "type": "Arabica",
+      "description": "กลุ่มพันธุ์กาแฟอาราบิก้าที่นิยมปลูกในประเทศไทย โดยเฉพาะพื้นที่ภาคเหนือ",
+      "province": "เชียงใหม่",
+      "flavor": "Chocolate, Nutty, Balanced",
+      "source": "สถาบันวิจัยและพัฒนาพื้นที่สูง (HRDI)",
+      "image": "C001.webp",
+      "tag": "Arabica, ไทย, เชียงใหม่, Chocolate, Nutty"
+    },
+    {
+      "coffee_id": "C002",
+      "name_th": "ทิปิก้า",
+      "name_en": "Typica",
+      "type": "Arabica",
+      "description": "สายพันธุ์กาแฟอาราบิก้าที่เป็นที่รู้จักและนิยมในกลุ่มกาแฟคุณภาพ",
+      "province": "เชียงใหม่",
+      "flavor": "Sweet, Clean, Floral",
+      "source": "สถาบันวิจัยและพัฒนาพื้นที่สูง (HRDI)",
+      "image": "C002.webp",
+      "tag": "Arabica, ไทย, เชียงใหม่, Sweet, Floral"
+    },
+    {
+      "coffee_id": "C003",
+      "name_th": "เบอร์บอน",
+      "name_en": "Bourbon",
+      "type": "Arabica",
+      "description": "สายพันธุ์กาแฟอาราบิก้าที่มีชื่อเสียงและเป็นหนึ่งในสายพันธุ์ที่นิยม",
+      "province": "เชียงใหม่",
+      "flavor": "Sweet, Fruity, Caramel",
+      "source": "สถาบันวิจัยและพัฒนาพื้นที่สูง (HRDI)",
+      "image": "C003.webp",
+      "tag": "Arabica, ไทย, เชียงใหม่, Sweet, Fruity, Caramel"
+    },
+    {
+      "coffee_id": "C004",
+      "name_th": "คาทูรา",
+      "name_en": "Caturra",
+      "type": "Arabica",
+      "description": "สายพันธุ์กาแฟอาราบิก้าที่ได้รับความนิยมและพัฒนามาจาก Bourbon",
+      "province": "เชียงใหม่",
+      "flavor": "Sweet, Fruity, Bright",
+      "source": "สถาบันวิจัยและพัฒนาพื้นที่สูง (HRDI)",
+      "image": "C004.webp",
+      "tag": "Arabica, ไทย, เชียงใหม่, Sweet, Fruity"
+    },
+    {
+      "coffee_id": "C005",
+      "name_th": "คาทุย",
+      "name_en": "Catuai",
+      "type": "Arabica",
+      "description": "สายพันธุ์กาแฟอาราบิก้าที่นิยมใช้ในการเพาะปลูกและผลิตกาแฟ",
+      "province": "เชียงใหม่",
+      "flavor": "Sweet, Chocolate, Nutty",
+      "source": "สถาบันวิจัยและพัฒนาพื้นที่สูง (HRDI)",
+      "image": "C005.webp",
+      "tag": "Arabica, ไทย, เชียงใหม่, Sweet, Chocolate, Nutty"
+    },
+    {
+      "coffee_id": "C006",
+      "name_th": "เกอิชา",
+      "name_en": "Geisha / Gesha",
+      "type": "Arabica",
+      "description": "สายพันธุ์กาแฟอาราบิก้าที่มีชื่อเสียงด้านคุณภาพและเป็นที่นิยมในตลาดกาแฟพิเศษ",
+      "province": "เชียงราย",
+      "flavor": "Floral, Jasmine, Tropical Fruit",
+      "source": "สถาบันวิจัยและพัฒนาพื้นที่สูง (HRDI)",
+      "image": "C006.webp",
+      "tag": "Arabica, ไทย, เชียงราย, Floral, Jasmine, Tropical Fruit, Premium"
+    },
+    {
+      "coffee_id": "C007",
+      "name_th": "จาวา",
+      "name_en": "Java",
+      "type": "Arabica",
+      "description": "สายพันธุ์กาแฟอาราบิก้าที่เป็นที่รู้จักและถูกกล่าวถึงในกลุ่มพันธุ์กาแฟที่นิยม",
+      "province": "เชียงใหม่",
+      "flavor": "Sweet, Floral, Fruity",
+      "source": "สถาบันวิจัยและพัฒนาพื้นที่สูง (HRDI)",
+      "image": "C007.webp",
+      "tag": "Arabica, ไทย, เชียงใหม่, Sweet, Floral, Fruity"
+    },
+    {
+      "coffee_id": "C008",
+      "name_th": "เชียงใหม่ 80",
+      "name_en": "Chiang Mai 80",
+      "type": "Arabica",
+      "description": "พันธุ์กาแฟอาราบิก้ากลุ่มคาติมอร์ที่กรมวิชาการเกษตรรับรองและปลูกในพื้นที่ภาคเหนือ",
+      "province": "เชียงใหม่",
+      "flavor": "Chocolate, Nutty, Balanced",
+      "source": "กรมวิชาการเกษตร",
+      "image": "C008.webp",
+      "tag": "Arabica, ไทย, เชียงใหม่, Chocolate, Nutty"
+    },
+    {
+      "coffee_id": "C009",
+      "name_th": "ชุมพร 84-4",
+      "name_en": "Chumphon 84-4",
+      "type": "Robusta",
+      "description": "กาแฟโรบัสต้าพันธุ์แนะนำของกรมวิชาการเกษตร เหมาะสำหรับพื้นที่ดอนในจังหวัดชุมพรหรือพื้นที่ที่ไม่มีน้ำท่วมขัง",
+      "province": "ชุมพร",
+      "flavor": "Strong, Chocolate, Nutty",
+      "source": "กรมวิชาการเกษตร",
+      "image": "C009.webp",
+      "tag": "Robusta, ไทย, ชุมพร, Strong, Chocolate, Nutty"
+    },
+    {
+      "coffee_id": "C010",
+      "name_th": "ชุมพร 84-5",
+      "name_en": "Chumphon 84-5",
+      "type": "Robusta",
+      "description": "กาแฟโรบัสต้าพันธุ์แนะนำของกรมวิชาการเกษตร เหมาะสำหรับพื้นที่ดอนในจังหวัดชุมพรหรือพื้นที่ที่ไม่มีน้ำท่วมขัง",
+      "province": "ชุมพร",
+      "flavor": "Strong, Chocolate, Nutty",
+      "source": "กรมวิชาการเกษตร",
+      "image": "C010.webp",
+      "tag": "Robusta, ไทย, ชุมพร, Strong, Chocolate, Nutty"
+    }
+  ],
+  "Coffee_Menu": [
+    {
+      "menu_id": "M001",
+      "name_th": "เอสเพรสโซร้อน",
+      "name_en": "Hot Espresso",
+      "flavor": "เข้มข้น",
+      "source": "Starbucks Coffee At Home",
+      "image": "M001.webp",
+      "tag": "กาแฟร้อน"
+    },
+    {
+      "menu_id": "M002",
+      "name_th": "เอสเพรสโซเย็น",
+      "name_en": "Iced Espresso",
+      "flavor": "เข้มข้น",
+      "source": "Starbucks Coffee At Home",
+      "image": "M002.webp",
+      "tag": "กาแฟเย็น"
+    },
+    {
+      "menu_id": "M003",
+      "name_th": "คาปูชิโนร้อน",
+      "name_en": "Hot Cappuccino",
+      "flavor": "เข้มข้น, นุ่ม",
+      "source": "Starbucks Coffee At Home",
+      "image": "M003.webp",
+      "tag": "กาแฟร้อน, นม"
+    },
+    {
+      "menu_id": "M004",
+      "name_th": "คาปูชิโนเย็น",
+      "name_en": "Iced Cappuccino",
+      "flavor": "เข้มข้น, นุ่ม",
+      "source": "Starbucks Coffee At Home",
+      "image": "M004.webp",
+      "tag": "กาแฟเย็น, นม"
+    },
+    {
+      "menu_id": "M005",
+      "name_th": "มอคค่าร้อน",
+      "name_en": "Hot Mocha",
+      "flavor": "ช็อกโกแลต, หวาน",
+      "source": "Starbucks Coffee At Home",
+      "image": "M005.webp",
+      "tag": "กาแฟร้อน, นม, ช็อกโกแลต"
+    },
+    {
+      "menu_id": "M006",
+      "name_th": "ลาเต้ร้อน",
+      "name_en": "Hot Latte",
+      "flavor": "นุ่ม, หวาน",
+      "source": "Starbucks Coffee At Home",
+      "image": "M006.webp",
+      "tag": "กาแฟร้อน, นม"
+    },
+    {
+      "menu_id": "M007",
+      "name_th": "แฟลตไวท์",
+      "name_en": "Flat White",
+      "flavor": "เข้มข้น, นุ่ม",
+      "source": "Starbucks Coffee At Home",
+      "image": "M007.webp",
+      "tag": "กาแฟร้อน, นม"
+    },
+    {
+      "menu_id": "M008",
+      "name_th": "ลาเต้เย็น",
+      "name_en": "Iced Latte",
+      "flavor": "นุ่ม, หวาน",
+      "source": "Starbucks Coffee At Home",
+      "image": "M008.webp",
+      "tag": "กาแฟเย็น, นม"
+    },
+    {
+      "menu_id": "M009",
+      "name_th": "โอเลี้ยง",
+      "name_en": "Thai Iced Coffee",
+      "flavor": "เข้มข้น, หวาน",
+      "source": "กรมวิชาการเกษตร",
+      "image": "M009.webp",
+      "tag": "กาแฟเย็น"
+    },
+    {
+      "menu_id": "M010",
+      "name_th": "กาแฟโบราณ",
+      "name_en": "Traditional Thai Coffee",
+      "flavor": "เข้มข้น, หวาน",
+      "source": "กรมวิชาการเกษตร",
+      "image": "M010.webp",
+      "tag": "กาแฟเย็น"
+    },
+    {
+      "menu_id": "M011",
+      "name_th": "กาแฟดริปเย็น",
+      "name_en": "Iced Drip Coffee",
+      "flavor": "หอม, สดชื่น",
+      "source": "Blue Bottle Coffee",
+      "image": "M011.webp",
+      "tag": "กาแฟเย็น, ดริป"
+    },
+    {
+      "menu_id": "M012",
+      "name_th": "โคลด์บริว",
+      "name_en": "Cold Brew",
+      "flavor": "นุ่ม, สดชื่น",
+      "source": "Blue Bottle Coffee",
+      "image": "M012.webp",
+      "tag": "กาแฟเย็น, โคลด์บริว"
+    },
+    {
+      "menu_id": "M013",
+      "name_th": "อัฟโฟกาโต",
+      "name_en": "Affogato",
+      "flavor": "เข้มข้น, หวาน",
+      "source": "Starbucks Coffee At Home",
+      "image": "M013.webp",
+      "tag": "กาแฟเย็น, ไอศกรีม"
+    },
+    {
+      "menu_id": "M014",
+      "name_th": "กาแฟเย็นนม",
+      "name_en": "Iced Milk Coffee",
+      "flavor": "นุ่ม, หวาน",
+      "source": "Wake Up Coffee",
+      "image": "M014.webp",
+      "tag": "กาแฟเย็น, นม"
+    },
+    {
+      "menu_id": "M015",
+      "name_th": "Dirty Coffee",
+      "name_en": "Dirty Coffee",
+      "flavor": "เข้มข้น, นุ่ม",
+      "source": "European Coffee Trip",
+      "image": "M015.webp",
+      "tag": "กาแฟเย็น, นม"
+    },
+    {
+      "menu_id": "M016",
+      "name_th": "อเมริกาโนน้ำส้ม",
+      "name_en": "Orange Americano",
+      "flavor": "เปรี้ยว, สดชื่น",
+      "source": "Dang Coffee Roaster",
+      "image": "M016.webp",
+      "tag": "กาแฟเย็น, ส้ม"
+    },
+    {
+      "menu_id": "M017",
+      "name_th": "อเมริกาโนมะพร้าว",
+      "name_en": "Coconut Americano",
+      "flavor": "หวาน, สดชื่น",
+      "source": "Nescafé Thailand",
+      "image": "M017.webp",
+      "tag": "กาแฟเย็น, มะพร้าว"
+    },
+    {
+      "menu_id": "M018",
+      "name_th": "กาแฟดริปร้อน",
+      "name_en": "Hot Drip Coffee",
+      "flavor": "หอม, นุ่ม",
+      "source": "MY LIBERICA Coffee",
+      "image": "M018.webp",
+      "tag": "กาแฟร้อน, ดริป"
+    },
+    {
+      "menu_id": "M019",
+      "name_th": "เอสเพรสโซ",
+      "name_en": "Espresso",
+      "flavor": "เข้มข้น",
+      "source": "Excelsa Coffee",
+      "image": "M019.webp",
+      "tag": "กาแฟร้อน"
+    },
+    {
+      "menu_id": "M020",
+      "name_th": "อเมริกาโนน้ำผึ้งมะนาว",
+      "name_en": "Honey Lemon Americano",
+      "flavor": "หวาน, เปรี้ยว",
+      "source": "Wake Up Coffee",
+      "image": "M020.webp",
+      "tag": "กาแฟเย็น, น้ำผึ้ง, มะนาว"
+    }
+  ]
+}
