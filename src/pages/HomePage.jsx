@@ -24,7 +24,7 @@ export default function HomePage() {
           alt="Iced Cappuccino"
           label="SCROLL TO CHOOSE YOUR PATH"
         />
-        <Ticker phrases={['Explore coffee', 'Find your next favorite', 'Made for curious sips']} />
+        <Ticker />
         <section className="shell home-choices" id="explore">
           <div className="catalog-intro">
             <div><div className="eyebrow">Choose your path</div><h2>Where to begin?</h2></div>
