@@ -4,6 +4,7 @@ import Introduction from '../components/Introduction.jsx';
 import { Footer, Header } from '../components/SiteLayout.jsx';
 import Ticker from '../components/Ticker.jsx';
 import useCoffeeData from '../hooks/useCoffeeData.js';
+import assetUrl from '../utils/assetUrl.js';
 
 const catalogSettings = {
   varieties: {
@@ -43,7 +44,7 @@ export default function CatalogPage({ kind }) {
   }, [records, query]);
   const active = filtered[activeIndex] || filtered[0];
   const introRecord = records[0];
-  const imagePath = (item) => `/images/${settings.imageFolder}/${item?.image || settings.firstImage}`;
+  const imagePath = (item) => assetUrl(`/images/${settings.imageFolder}/${item?.image || settings.firstImage}`);
 
   useEffect(() => {
     setActiveIndex(0);

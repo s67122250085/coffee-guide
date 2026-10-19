@@ -4,6 +4,7 @@ import { Footer, Header } from '../components/SiteLayout.jsx';
 import Introduction from '../components/Introduction.jsx';
 import Ticker from '../components/Ticker.jsx';
 import useCoffeeData from '../hooks/useCoffeeData.js';
+import assetUrl from '../utils/assetUrl.js';
 
 export default function HomePage() {
   const { data, status, error, retry, source } = useCoffeeData();
@@ -19,7 +20,7 @@ export default function HomePage() {
           description="จากต้นทางของเมล็ดกาแฟ ไปจนถึงแก้วโปรดใบถัดไป เริ่มค้นพบเรื่องราวของกาแฟในแบบของคุณ"
           count={<><b>{varieties.length}</b> สายพันธุ์ · <b>{menu.length}</b> เมนูกาแฟ</>}
           marker="CG"
-          image="/images/menu/M004.webp"
+          image={assetUrl('/images/menu/M004.webp')}
           alt="Iced Cappuccino"
           label="SCROLL TO CHOOSE YOUR PATH"
         />
@@ -33,8 +34,8 @@ export default function HomePage() {
           {status === 'error' && <div className="data-message" role="alert">โหลดข้อมูลไม่สำเร็จ: {error} <button onClick={retry}>ลองอีกครั้ง</button></div>}
           {status === 'ready' && source === 'local' && error && <div className="data-message" role="status">กำลังแสดงข้อมูลสำรองในเครื่อง เนื่องจาก Firebase ยังอ่านข้อมูลไม่ได้: {error}</div>}
           <div className="home-choice-grid">
-            <ChoiceCard to="/varieties" className="home-choice-beans" image="/images/coffee/C006.webp" alt="Geisha coffee variety" eyebrow="01 · Origins" title={<>Meet the<br />varieties.</>} count={varieties.length} countLabel="coffee varieties" />
-            <ChoiceCard to="/coffee-menu" className="home-choice-menu" image="/images/menu/M004.webp" alt="Iced cappuccino" eyebrow="02 · In the cup" title={<>Something<br />to sip.</>} count={menu.length} countLabel="coffee menus" />
+            <ChoiceCard to="/varieties" className="home-choice-beans" image={assetUrl('/images/coffee/C006.webp')} alt="Geisha coffee variety" eyebrow="01 · Origins" title={<>Meet the<br />varieties.</>} count={varieties.length} countLabel="coffee varieties" />
+            <ChoiceCard to="/coffee-menu" className="home-choice-menu" image={assetUrl('/images/menu/M004.webp')} alt="Iced cappuccino" eyebrow="02 · In the cup" title={<>Something<br />to sip.</>} count={menu.length} countLabel="coffee menus" />
           </div>
         </section>
         <section className="home-note">

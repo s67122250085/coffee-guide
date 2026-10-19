@@ -1,10 +1,11 @@
 import { Link, NavLink, Outlet } from 'react-router';
+import assetUrl from '../utils/assetUrl.js';
 
 export function Header({ ctaHref = '#explore', ctaText = 'เริ่มสำรวจ ↓' }) {
   return (
     <header className="nav" id="top">
       <Link className="brand" to="/" aria-label="Coffee Guide home">
-        <img src="/images/logo/LOGO.png" alt="" />
+        <img src={assetUrl('/images/logo/LOGO.png')} alt="" />
         <span>COFFEE<br />GUIDE</span>
       </Link>
       <nav className="nav-links" aria-label="เมนูหลัก">
@@ -22,7 +23,7 @@ export function Footer() {
     <footer className="footer">
       <div className="shell footer-inner">
         <Link className="brand" to="/">
-          <img src="/images/logo/LOGO.png" alt="" />
+          <img src={assetUrl('/images/logo/LOGO.png')} alt="" />
           <span>COFFEE<br />GUIDE</span>
         </Link>
         <small>เรื่องราวดี ๆ เริ่มต้นได้ในกาแฟหนึ่งแก้ว</small>
