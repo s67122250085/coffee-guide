@@ -51,7 +51,7 @@ firebase deploy --only hosting,database
 ## ความคืบหน้าตาม Assignment 7
 
 - **ทำแล้ว:** เก็บข้อมูล รูปภาพ การค้นหา และรายละเอียดกาแฟเดิมไว้ พร้อมย้าย UI มาเป็น React components
-- **ทำแล้ว:** ตั้ง Vite, routes, responsive layout, scroll animation/reveal, loading/empty/error states และ build production
+- **ทำแล้ว (ข้อ 3):** พัฒนาหน้า Home/สายพันธุ์/เมนูด้วย React components และ Routing; เชื่อม Firebase; แสดงรายละเอียดเป็นเรื่องราวตามการเลื่อน; ค้นหาได้; มีสถานะ loading/ไม่พบข้อมูล/error; และจัด responsive layout
 - **เตรียมแล้ว:** ไฟล์ JSON สำหรับ import, ตัวอ่าน Firebase Realtime Database, ตัวอย่าง environment config, Firebase Hosting rewrite และ rules แบบ read-only
 - **ทำแล้ว:** พบ Firebase Project จริงและลงทะเบียน Web App `Coffee Guide Web`; config อยู่ใน `.env.local` ซึ่งไม่ถูก commit
 - **ทำแล้ว:** สำรองข้อมูลก่อนปรับไว้ที่ `data/firebase-backup-before-normalization.json` (ไฟล์ถูก ignore โดย Git) และจัดข้อมูล Realtime Database เป็นสายพันธุ์ C001–C010 กับเมนู M001–M020
