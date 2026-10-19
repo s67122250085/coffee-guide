@@ -5,6 +5,7 @@ export default function useCoffeeData() {
   const [data, setData] = useState(null);
   const [status, setStatus] = useState('loading');
   const [error, setError] = useState('');
+  const [source, setSource] = useState('local');
   const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
@@ -12,9 +13,10 @@ export default function useCoffeeData() {
     setStatus('loading');
     loadCoffeeData().then((result) => {
       if (!active) return;
-      setData(result);
+      setData(result.data);
+      setSource(result.source);
       setStatus('ready');
-      setError('');
+      setError(result.warning || '');
     }).catch((cause) => {
       if (!active) return;
       setError(cause?.message || 'โหลดข้อมูลไม่สำเร็จ');
@@ -24,5 +26,5 @@ export default function useCoffeeData() {
   }, [attempt]);
 
   const retry = useCallback(() => setAttempt((value) => value + 1), []);
-  return { data, status, error, retry, isFirebase: usingFirebase() };
+  return { data, status, error, retry, isFirebase: usingFirebase(), source };
 }

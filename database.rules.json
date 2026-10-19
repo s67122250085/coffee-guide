@@ -2,7 +2,7 @@
   "rules": {
     ".read": false,
     ".write": false,
-    "Coffee_Varietals": { ".read": true },
-    "Coffee_Menu": { ".read": true }
+    "coffee_varieties": { ".read": true },
+    "coffee_menu": { ".read": true }
   }
 }

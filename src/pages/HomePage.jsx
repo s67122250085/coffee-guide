@@ -6,7 +6,7 @@ import Ticker from '../components/Ticker.jsx';
 import useCoffeeData from '../hooks/useCoffeeData.js';
 
 export default function HomePage() {
-  const { data, status, error, retry } = useCoffeeData();
+  const { data, status, error, retry, source } = useCoffeeData();
   const varieties = data?.Coffee_Varietals || [];
   const menu = data?.Coffee_Menu || [];
   return (
@@ -31,6 +31,7 @@ export default function HomePage() {
           </div>
           {status === 'loading' && <div className="data-message" role="status">กำลังโหลดข้อมูลกาแฟ…</div>}
           {status === 'error' && <div className="data-message" role="alert">โหลดข้อมูลไม่สำเร็จ: {error} <button onClick={retry}>ลองอีกครั้ง</button></div>}
+          {status === 'ready' && source === 'local' && error && <div className="data-message" role="status">กำลังแสดงข้อมูลสำรองในเครื่อง เนื่องจาก Firebase ยังอ่านข้อมูลไม่ได้: {error}</div>}
           <div className="home-choice-grid">
             <ChoiceCard to="/varieties" className="home-choice-beans" image="/images/coffee/C006.webp" alt="Geisha coffee variety" eyebrow="01 · Origins" title={<>Meet the<br />varieties.</>} count={varieties.length} countLabel="coffee varieties" />
             <ChoiceCard to="/coffee-menu" className="home-choice-menu" image="/images/menu/M004.webp" alt="Iced cappuccino" eyebrow="02 · In the cup" title={<>Something<br />to sip.</>} count={menu.length} countLabel="coffee menus" />

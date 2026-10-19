@@ -30,7 +30,7 @@ const catalogSettings = {
 
 export default function CatalogPage({ kind }) {
   const settings = catalogSettings[kind];
-  const { data, status, error, retry, isFirebase } = useCoffeeData();
+  const { data, status, error, retry, isFirebase, source } = useCoffeeData();
   const [query, setQuery] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
   const [revealed, setRevealed] = useState(() => new Set());
@@ -111,7 +111,8 @@ export default function CatalogPage({ kind }) {
             <input className="search" type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={settings.search} aria-label={`ค้นหา${settings.type}`} />
           </div>
           {status === 'loading' && <div className="data-message" role="status">กำลังโหลดข้อมูลกาแฟ…</div>}
-          {status === 'error' && <div className="data-message" role="alert">โหลดข้อมูลจาก Firebase ไม่สำเร็จ: {error} <button onClick={retry}>ลองอีกครั้ง</button></div>}
+          {status === 'error' && <div className="data-message" role="alert">โหลดข้อมูลไม่สำเร็จ: {error} <button onClick={retry}>ลองอีกครั้ง</button></div>}
+          {status === 'ready' && source === 'local' && error && <div className="data-message" role="status">กำลังแสดงข้อมูลสำรองในเครื่อง เนื่องจาก Firebase ยังอ่านข้อมูลไม่ได้: {error} <button onClick={retry}>ลองอีกครั้ง</button></div>}
           {status === 'ready' && !filtered.length && <div className="data-message">{query ? 'ไม่พบข้อมูลที่ค้นหา' : `ยังไม่มีข้อมูล${settings.type}ในระบบ`}</div>}
           {status === 'ready' && filtered.length > 0 && (
             <div className="story-section">
