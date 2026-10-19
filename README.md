@@ -53,6 +53,9 @@ firebase deploy --only hosting,database
 - **ทำแล้ว:** เก็บข้อมูล รูปภาพ การค้นหา และรายละเอียดกาแฟเดิมไว้ พร้อมย้าย UI มาเป็น React components
 - **ทำแล้ว:** ตั้ง Vite, routes, responsive layout, scroll animation/reveal, loading/empty/error states และ build production
 - **เตรียมแล้ว:** ไฟล์ JSON สำหรับ import, ตัวอ่าน Firebase Realtime Database, ตัวอย่าง environment config, Firebase Hosting rewrite และ rules แบบ read-only
-- **เตรียมแล้ว:** พบ Firebase Project จริงและลงทะเบียน Web App `Coffee Guide Web`; config อยู่ใน `.env.local` ซึ่งไม่ถูก commit เว็บจะแสดงข้อมูล local สำรองพร้อมคำเตือนถ้าอ่าน Firebase ไม่ได้
-- **ยังต้องทำ:** สำรองและจัดโครงสร้างข้อมูล Firebase ให้ตรงกับ `coffee_varieties` และ `coffee_menu`, อนุมัติกฎอ่านสาธารณะแบบ read-only, deploy และทดสอบ URL สาธารณะ
+- **ทำแล้ว:** พบ Firebase Project จริงและลงทะเบียน Web App `Coffee Guide Web`; config อยู่ใน `.env.local` ซึ่งไม่ถูก commit
+- **ทำแล้ว:** สำรองข้อมูลก่อนปรับไว้ที่ `data/firebase-backup-before-normalization.json` (ไฟล์ถูก ignore โดย Git) และจัดข้อมูล Realtime Database เป็นสายพันธุ์ C001–C010 กับเมนู M001–M020
+- **ทำแล้ว:** เผยแพร่กฎ Firebase ให้สาธารณะอ่านได้เฉพาะ `coffee_varieties` และ `coffee_menu`; ปิดการอ่านที่ root และปิดการเขียนทั้งหมด
+- **ทำแล้ว:** ทดสอบแอปอ่านข้อมูลจริงจาก Firebase ได้ครบ 10 สายพันธุ์และ 20 เมนู และ `npm run build` ผ่าน
+- **ยังต้องทำ:** deploy Firebase Hosting และทดสอบ URL สาธารณะ
 - **ยังต้องทำ:** รวบรวมผลทดสอบ/ภาพหลักฐาน, รายงาน PDF, สไลด์นำเสนอ และวิดีโอ demo
