@@ -1,114 +1,192 @@
-# Coffee Guide - Project Handoff
+# Coffee Guide - รายงานโครงงาน Assignment 7
 
-**Assignment:** งานที่ 7 การพัฒนา ทดสอบ และนำเสนอเว็บแอปพลิเคชัน  
-**วันที่จัดทำ:** 19 ตุลาคม 2026
+**หัวข้อ:** การพัฒนา ทดสอบ และนำเสนอเว็บแอปพลิเคชัน  
+**วันที่ปรับปรุง:** 20 ตุลาคม 2026  
+**เว็บที่เผยแพร่:** https://coffeeguide-7fc30.web.app/  
+**Repository:** https://github.com/s67122250085/coffee-guide
 
-## 1. ชื่อและวัตถุประสงค์
+> รายงานฉบับนี้เรียงหัวข้อตามเอกสารตัวอย่าง Assignment 7 ตั้งแต่การเตรียมโครงการไปจนถึงแนวทางสาธิต โดยบันทึกเฉพาะสิ่งที่ตรวจสอบได้จากโครงการ Coffee Guide
 
-**Coffee Guide** เป็นเว็บแอปพลิเคชันสำหรับสำรวจเรื่องราวของกาแฟ ตั้งแต่สายพันธุ์และแหล่งปลูกไปจนถึงเมนูกาแฟ มีเป้าหมายให้ผู้ใช้ค้นพบข้อมูลกาแฟได้ง่ายผ่านหน้าเว็บที่อ่านสบาย ใช้งานได้หลายขนาดหน้าจอ และเล่าเนื้อหาเป็นลำดับระหว่างการเลื่อน
+## 1. จัดเตรียมโครงการ React
 
-## 2. ขอบเขตและฟังก์ชันที่พัฒนา
+### 1.1 เทคโนโลยีและโครงสร้างโครงการ
 
-- หน้า Home นำเสนอแนวคิดและทางเข้าสู่สายพันธุ์กาแฟหรือเมนู
-- แคตตาล็อกสายพันธุ์กาแฟ 10 รายการ และเมนูกาแฟ 20 รายการ
-- ค้นหารายการจากชื่อ รายละเอียด รสชาติ หรือข้อมูลที่เกี่ยวข้อง
-- แสดงรายละเอียด แหล่งปลูก รสชาติ ประเภท และแหล่งข้อมูลตามข้อมูลที่มี
-- เล่าเรื่องทีละรายการด้วยภาพที่สัมพันธ์กับรายการและแอนิเมชันระหว่างเลื่อน
-- มีสถานะกำลังโหลด ไม่พบผลลัพธ์ และข้อผิดพลาด พร้อมทางให้ลองโหลดใหม่
-- รองรับ Desktop, Tablet และ Mobile
-- อ่านข้อมูลจาก Firebase Realtime Database เมื่อกำหนดค่าไว้ และใช้ข้อมูล JSON ในเครื่องเป็น fallback
-
-**ขอบเขตที่ยังไม่มี:** ระบบสมาชิกและการเขียน/แก้ไขข้อมูลจากหน้าเว็บ เนื่องจากระบบนี้เป็นแคตตาล็อกข้อมูลสาธารณะ
-
-### ความต่อเนื่องจากงานที่ 5
-
-งานที่ 5 วางเป้าหมายเรื่องการให้ความรู้และค้นหาข้อมูลสายพันธุ์กาแฟกับเมนู โดยแยกหน้า Home, รายการ และหน้า Detail พร้อม Search/Tag Filter โครงสร้างข้อมูล Firebase สองโหนด และเสนอระบบสมาชิก รายการโปรด และระบบแนะนำเป็น Future Features
-
-การพัฒนาจริงคงวัตถุประสงค์ กลุ่มผู้ใช้ และโหนดข้อมูลเดิมไว้ แต่ปรับ Information Architecture ตามแนวทางหน้าเล่าเรื่องแบบ scroll: ใช้ `/varieties` และ `/coffee-menu` เป็นหน้ารายการ โดยแสดงรายละเอียดรายการในหน้าเดียวแทนการแยก Detail Route; Search ค้นหาค่าของฟิลด์รวมถึง tag ได้ แต่ยังไม่มีแถบปุ่มกรอง tag แยกต่างหาก ส่วนระบบสมาชิก รายการโปรด และระบบแนะนำยังอยู่นอกขอบเขตเวอร์ชันนี้
-
-## 3. เทคโนโลยีและโครงสร้างข้อมูล
-
-- React 19 และ JavaScript สำหรับส่วนติดต่อผู้ใช้
+- React 19 และ JavaScript สำหรับสร้างส่วนติดต่อผู้ใช้
 - Vite 8 สำหรับพัฒนาและสร้าง production build
-- React Router 8 สำหรับ client-side routing
-- Firebase JavaScript SDK และ Realtime Database สำหรับอ่านข้อมูล
-- CSS สำหรับ layout, responsive design และ scroll animation
+- React Router 8 สำหรับเปลี่ยนหน้าโดยไม่โหลดเอกสารใหม่
+- Firebase JavaScript SDK สำหรับอ่าน Firebase Realtime Database
+- CSS สำหรับการจัดหน้า รองรับหลายขนาดหน้าจอ และแอนิเมชันระหว่างเลื่อน
 
-Firebase Realtime Database จัดข้อมูลไว้ที่ root สองโหนด:
+ส่วน React หลักอยู่ใน `src/`, ชุดข้อมูลสำรองและไฟล์นำเข้าอยู่ใน `data/`, ภาพสำหรับ production อยู่ใน `public/images/` และไฟล์กำหนดค่า Firebase Hosting อยู่ที่ `firebase.json`
 
-| โหนด | จำนวน | รูปแบบ key | ฟิลด์หลัก |
-|---|---:|---|---|
-| `coffee_varieties` | 10 | `C001` ถึง `C010` | `coffee_id`, `name_th`, `name_en`, `type`, `description`, `province`, `flavor`, `source`, `image`, `tag` |
-| `coffee_menu` | 20 | `M001` ถึง `M020` | `menu_id`, `name_th`, `name_en`, `flavor`, `source`, `image`, `tag` และฟิลด์รายละเอียดอื่นตามรายการ |
+### 1.2 GitHub Repository
 
-ไฟล์ `data/firebase-import.json` เป็นชุดนำเข้าที่จัดโครงสร้างไว้ ส่วน `data/coffee.json` เป็น fallback สำหรับแอป
+ซอร์สโค้ดจัดเก็บใน [GitHub Repository](https://github.com/s67122250085/coffee-guide) โดยตั้งค่าคลังเป็น Private ตามที่เจ้าของโครงการเลือก หากผู้สอนต้องตรวจ Source Code เจ้าของโครงการต้องเพิ่มผู้สอนเป็น Collaborator
 
-กฎฐานข้อมูลปิดการอ่านที่ root และปิดการเขียนทั้งหมด เปิดอ่านสาธารณะเฉพาะ `coffee_varieties` และ `coffee_menu` ตามการใช้งานแบบแคตตาล็อก
+### 1.3 การบันทึกเวอร์ชัน
 
-## 4. Routes และ Components
+โครงการใช้ Git สำหรับเก็บประวัติการพัฒนา การปรับปรุงและ Deploy ล่าสุดอิงจาก `main` commit `9214bc3` หลังดึงการแก้ไขล่าสุดจาก GitHub และ build/deploy สำเร็จ
 
-| Route | หน้าที่ | ไฟล์หน้า |
+## 2. เชื่อมต่อ Firebase
+
+### 2.1 Firebase Project
+
+โครงการใช้ Firebase Project ID `coffeeguide-7fc30` และลงทะเบียน Web App ชื่อ Coffee Guide Web ค่าการเชื่อมต่อของ Web App อ่านจาก environment variables ที่ขึ้นต้นด้วย `VITE_FIREBASE_`
+
+### 2.2 Realtime Database
+
+ฐานข้อมูลเก็บข้อมูลสาธารณะสองชุดที่ root ได้แก่ `coffee_varieties` และ `coffee_menu` โดยใช้รหัสรายการเป็น key
+
+### 2.3 ข้อมูลที่นำเข้า
+
+ไฟล์ `data/firebase-import.json` จัดข้อมูลพร้อมนำเข้า Realtime Database ส่วน `data/coffee.json` เป็นข้อมูลสำรองสำหรับกรณีที่ยังไม่ได้ตั้งค่า Firebase
+
+| Node | จำนวนรายการ | ตัวอย่าง key |
+|---|---:|---|
+| `coffee_varieties` | 10 สายพันธุ์ | `C001`–`C010` |
+| `coffee_menu` | 20 เมนู | `M001`–`M020` |
+
+### 2.4 การเชื่อม React กับ Firebase
+
+`src/services/coffeeData.js` อ่านข้อมูลจาก Realtime Database และตรวจรูปแบบข้อมูลก่อนส่งให้หน้าเว็บ `src/hooks/useCoffeeData.js` จัดการสถานะ loading, error และ retry หากไม่มี Firebase configuration แอปใช้ชุดข้อมูลในเครื่องแทน
+
+### 2.5 Database Rules
+
+Rules ปิดการอ่านที่ root และปิดการเขียนทั้งหมด เปิดอ่านเฉพาะ `coffee_varieties` และ `coffee_menu` ตามรูปแบบแคตตาล็อกข้อมูลสาธารณะ
+
+### 2.6 Firebase Authentication
+
+เวอร์ชันปัจจุบันไม่มีระบบสมาชิกหรือข้อมูลส่วนบุคคล จึงยังไม่ได้ใช้ Firebase Authentication การตัดสินใจนี้สอดคล้องกับขอบเขตแคตตาล็อกสาธารณะ
+
+## 3. พัฒนาส่วนติดต่อผู้ใช้ การนำทาง และฟังก์ชันหลัก
+
+### 3.1 วิธีใช้งานโดยย่อ
+
+ผู้ใช้เริ่มจากหน้า Home แล้วเลือกไปยังหน้าสายพันธุ์กาแฟหรือเมนูกาแฟ พิมพ์คำค้นเพื่อหารายการ จากนั้นเลื่อนอ่านรายละเอียดแต่ละรายการที่แสดงต่อเนื่องในหน้าเดียว
+
+### 3.2 ฟังก์ชันหลัก
+
+- หน้า Home แนะนำ Coffee Guide และทางเข้าสู่เนื้อหา
+- แสดงสายพันธุ์ 10 รายการและเมนูกาแฟ 20 รายการ
+- ค้นหาจากชื่อ รายละเอียด รสชาติ และข้อมูล/แท็กที่เกี่ยวข้อง
+- แสดงรายละเอียดและภาพประกอบของรายการ
+- แสดงเนื้อหาแบบเล่าเรื่องต่อเนื่องพร้อมเอฟเฟกต์ตามการเลื่อน
+- รองรับสถานะกำลังโหลด ไม่พบผลลัพธ์ และข้อผิดพลาด พร้อมปุ่มลองใหม่
+- ปรับรูปแบบสำหรับคอมพิวเตอร์ แท็บเล็ต และโทรศัพท์มือถือ
+
+### 3.3 Routes และ Components
+
+| Route | หน้าที่ | ไฟล์หลัก |
 |---|---|---|
-| `/` | หน้า Home และทางเลือกเริ่มสำรวจ | `src/pages/HomePage.jsx` |
-| `/varieties` | ค้นหาและอ่านเรื่องราวสายพันธุ์กาแฟ | `src/pages/CatalogPage.jsx` (`kind="varieties"`) |
-| `/coffee-menu` | ค้นหาและอ่านเรื่องราวเมนูกาแฟ | `src/pages/CatalogPage.jsx` (`kind="menu"`) |
+| `/` | หน้าแรก | `src/pages/HomePage.jsx` |
+| `/varieties` | ค้นหาและอ่านสายพันธุ์กาแฟ | `src/pages/CatalogPage.jsx` |
+| `/coffee-menu` | ค้นหาและอ่านเมนูกาแฟ | `src/pages/CatalogPage.jsx` |
 
-- `src/components/SiteLayout.jsx` จัด Header, Navigation และ Footer
-- `src/components/Introduction.jsx` แสดง intro แบบ sticky และเอฟเฟกต์ตาม scroll
-- `src/components/Ticker.jsx` แสดงแถบข้อความคั่นเรื่องราว
-- `src/hooks/useCoffeeData.js` จัดการ loading, error, retry และแหล่งข้อมูล
-- `src/services/coffeeData.js` อ่านและตรวจข้อมูลจาก Firebase พร้อม local fallback
-- `src/services/validateCoffeeData.mjs` ตรวจ schema และรหัสรายการ
-- `src/utils/assetUrl.js` กำหนดเวอร์ชัน URL รูปเพื่อหลีกเลี่ยง cache เก่า
+คอมโพเนนต์ส่วนกลาง ได้แก่ `SiteLayout.jsx` สำหรับโครงหน้าและเมนู, `Introduction.jsx` สำหรับส่วนแนะนำแบบ sticky และเอฟเฟกต์ scroll, และ `Ticker.jsx` สำหรับแถบข้อความคั่นเนื้อหา รายละเอียดรายการแสดงภายในหน้าแคตตาล็อก ไม่ได้แยกเป็น Detail Route
 
-## 5. วิธีติดตั้งและใช้งาน
+### 3.4 ขอบเขตเทียบกับงานที่ 5
 
-ต้องมี Node.js และ npm ติดตั้งในเครื่อง
+งานที่ 5 วางแนวทางเว็บไซต์ให้ความรู้เรื่องสายพันธุ์และเมนูกาแฟ พร้อมการค้นหา และโครงสร้าง Firebase สองชุด งานนี้คงวัตถุประสงค์และข้อมูลดังกล่าว แต่ใช้หน้าแคตตาล็อกแบบเล่าเรื่องด้วยการเลื่อน รายละเอียดอยู่ในหน้าเดียวกัน Search ครอบคลุมค่า tag แต่ยังไม่มีปุ่มกรอง tag แยกต่างหาก ส่วนระบบสมาชิก รายการโปรด และระบบแนะนำยังเป็นแนวคิดต่อยอด ไม่ได้อยู่ในเวอร์ชันนี้
+
+## 4. ทดสอบและปรับปรุงระบบ
+
+### 4.1 ลำดับการใช้งานที่ตรวจสอบ
+
+1. เปิดหน้า Home และเลือกหมวดเนื้อหา
+2. เปิดหน้าสายพันธุ์หรือเมนูกาแฟ
+3. ทดลองค้นหาด้วยคำที่มีผลลัพธ์และคำที่ไม่พบ
+4. เลื่อนอ่านรายละเอียดและตรวจการเปลี่ยนภาพ/แอนิเมชัน
+5. ตรวจสถานะข้อมูลและการแสดงผลบนหน้าจอหลายขนาด
+
+### 4.2 ผลการตรวจสอบ
+
+- Unit tests สำหรับตรวจรูปแบบข้อมูลผ่าน 4/4 กรณี: ข้อมูลถูกต้อง, collection หาย, key ไม่ตรงกับ record ID และ record ขาดฟิลด์บังคับ
+- `npm run build` ผ่านสำหรับ production
+- ตรวจ responsive ที่ความกว้าง 320, 390, 768 และ 1365 px
+- ตรวจ routes, การค้นหา, กรณีไม่พบผลลัพธ์ และการโหลดข้อมูล
+- ตรวจการให้บริการไฟล์ภาพบน Firebase Hosting หลัง Deploy
+
+### 4.3 กรณีไม่พบข้อมูลหรือเกิดข้อผิดพลาด
+
+หน้าแคตตาล็อกแสดงสถานะ loading ระหว่างอ่านข้อมูล แสดงข้อความเมื่อค้นหาไม่พบรายการ และแสดงสถานะ error พร้อมทางเลือกให้ลองโหลดข้อมูลใหม่ หากไม่มี Firebase config แอปใช้ JSON ในเครื่องเป็น fallback
+
+## 5. Deploy เว็บแอปพลิเคชัน
+
+สร้าง production build ด้วย `npm run build` จากนั้นเผยแพร่โฟลเดอร์ `dist/` ผ่าน Firebase Hosting โดย `firebase.json` กำหนด SPA rewrite ให้เส้นทางเว็บเปิดผ่าน `index.html`
+
+**ลิงก์เว็บไซต์:** [https://coffeeguide-7fc30.web.app/](https://coffeeguide-7fc30.web.app/)
+
+การ Deploy ล่าสุดสำเร็จจากโค้ด `main` commit `9214bc3` และ Firebase Hosting รายงานอัปโหลดไฟล์ 36 รายการเสร็จสมบูรณ์
+
+## 6. เอกสารส่งมอบ
+
+### 6.1 ชื่อและวัตถุประสงค์
+
+**Coffee Guide — คู่มือสำรวจสายพันธุ์และเมนูกาแฟ** เป็นเว็บแอปสำหรับรวบรวมและนำเสนอข้อมูลกาแฟ เพื่อให้ผู้ใช้ค้นหาและเรียนรู้สายพันธุ์กาแฟ แหล่งปลูก รสชาติ และเมนูกาแฟได้จากแหล่งเดียว
+
+### 6.2 ขอบเขตที่พัฒนาเสร็จ
+
+ระบบปัจจุบันใช้ React สำหรับ UI, Firebase Realtime Database สำหรับข้อมูล และ Firebase Hosting สำหรับเผยแพร่ รองรับหน้า Home, แคตตาล็อกสองหมวด, ค้นหา, รายละเอียด, scroll storytelling, responsive layout และสถานะ loading/error/empty
+
+ระบบสมาชิก การบันทึกรายการโปรด และระบบแนะนำยังไม่รวมอยู่ในขอบเขตที่ส่งมอบ
+
+### 6.3 โครงสร้างข้อมูล Firebase
+
+| Node | รายละเอียดฟิลด์หลัก |
+|---|---|
+| `coffee_varieties` | `coffee_id`, `name_th`, `name_en`, `type`, `description`, `province`, `flavor`, `source`, `image`, `tag` |
+| `coffee_menu` | `menu_id`, `name_th`, `name_en`, `flavor`, `source`, `image`, `tag` และข้อมูลรายละเอียดตามรายการ |
+
+### 6.4 วิธีเปิดโครงการในเครื่อง
+
+ต้องติดตั้ง Node.js และ npm ก่อน จากนั้นใช้คำสั่งต่อไปนี้:
 
 ```bash
 git clone https://github.com/s67122250085/coffee-guide.git
 cd coffee-guide
 npm install
-```
-
-หากต้องการเชื่อม Firebase ให้คัดลอก `.env.example` เป็น `.env.local` แล้วกำหนดค่า `VITE_FIREBASE_*` จาก Firebase Web App config จากนั้นเริ่มเซิร์ฟเวอร์ใหม่ หากไม่กำหนดค่า Firebase ระบบจะใช้ข้อมูล fallback ใน `data/coffee.json`
-
-```bash
 npm run dev
 ```
 
-คำสั่งสำคัญ:
+หากต้องการใช้ Firebase ให้คัดลอก `.env.example` เป็น `.env.local` และกำหนดค่า `VITE_FIREBASE_*` สำหรับ local development ห้าม commit `.env.local` หรือ Service Account key
 
-```bash
-npm test
-npm run build
-npm run preview
-```
+### 6.5 ไฟล์สำคัญสำหรับผู้รับช่วง
 
-## 6. ผลการทดสอบและ Deploy
+- `src/` — หน้า React, components, hooks และ services
+- `data/firebase-import.json` — ชุดข้อมูลสำหรับ Firebase
+- `data/coffee.json` — ชุดข้อมูลสำรอง
+- `public/images/` — ภาพที่เผยแพร่พร้อมเว็บ
+- `database.rules.json` — กฎอ่าน/เขียน Realtime Database
+- `firebase.json` — การตั้งค่า Hosting และ SPA rewrite
+- `.env.example` — ชื่อตัวแปรสำหรับตั้งค่าโดยไม่มีค่าลับ
 
-- Unit tests สำหรับตรวจชุดข้อมูล Firebase ผ่าน 4/4 กรณี: ชุดข้อมูลถูกต้อง, collection หาย, key ไม่ตรง record ID และ record ขาดฟิลด์บังคับ
-- `npm run build` ผ่าน และสร้างไฟล์ production ใน `dist/`
-- Firebase Hosting deploy สำเร็จ โดยอัปโหลด 36 ไฟล์ รวมไฟล์รูปและ SPA rewrite
-- เปิดเว็บสาธารณะและตรวจไฟล์รูปที่ Hosting ให้บริการได้
-- Routes และ responsive flow ผ่านการตรวจในขั้นตอนทดสอบของโครงงานที่ขนาด 320, 390, 768 และ 1365 px
+## 7. แนวทางนำเสนอและสาธิตระบบ
 
-## 7. ลิงก์ส่งมอบ
+### 7.1 ปัญหาและแนวคิด
 
-- เว็บที่ Deploy แล้ว: [https://coffeeguide-7fc30.web.app/](https://coffeeguide-7fc30.web.app/)
-- GitHub Repository: [https://github.com/s67122250085/coffee-guide](https://github.com/s67122250085/coffee-guide)
-- Firebase Project ID: `coffeeguide-7fc30`
+ข้อมูลสายพันธุ์กาแฟ แหล่งปลูก รสชาติ และเมนูกาแฟมักกระจายอยู่หลายแหล่ง Coffee Guide จึงรวบรวมเนื้อหาไว้ในเว็บเดียวและนำเสนอเป็นลำดับ เพื่อให้ผู้ใช้ค้นหาและทำความเข้าใจได้ง่าย
 
-**หมายเหตุเรื่องสิทธิ์เข้าถึง:** GitHub Repository ตั้งเป็น Private ตามที่เจ้าของโครงงานเลือกไว้ ผู้สอนต้องได้รับสิทธิ์ Collaborator เพื่อเปิด Source Code ได้ ส่วนเว็บไซต์สาธารณะเปิดดูได้จาก Hosting URL ด้านบน
+### 7.2 กลุ่มผู้ใช้เป้าหมาย
 
-## 8. ไฟล์สำคัญใน Repository
+- ผู้สนใจเริ่มเรียนรู้เรื่องกาแฟ
+- ผู้ที่ต้องการสำรวจสายพันธุ์และแหล่งปลูก
+- ผู้ที่ต้องการค้นหาเมนูกาแฟและข้อมูลรสชาติ
 
-- `src/` - React application, routes, components, services และ tests
-- `data/firebase-import.json` - ข้อมูลสำหรับนำเข้า Firebase
-- `data/coffee.json` - ชุดข้อมูล fallback ในเครื่อง
-- `public/images/` - รูปที่จัดส่งไปกับ production build
-- `database.rules.json` - Firebase Realtime Database rules
-- `firebase.json` - Firebase Hosting และ SPA rewrite configuration
-- `.env.example` - ชื่อตัวแปร config โดยไม่มีค่าจริง
+### 7.3 ฟังก์ชันหลักสำหรับอธิบาย
 
-ไฟล์ `.env.local` และไฟล์ backup ฐานข้อมูลถูก exclude จาก Git ด้วย `.gitignore` อย่าเผยแพร่ Firebase secrets หรือ Service Account keys ใน repository
+แนะนำหน้า Home, การแยกเนื้อหาเป็นสายพันธุ์และเมนู, การค้นหา, รายละเอียดของรายการ, การอ่านแบบ scroll storytelling, การเชื่อม Firebase และการรองรับหลายขนาดหน้าจอ
+
+### 7.4 การเชื่อมต่อ Firebase ที่ควรสาธิต
+
+แสดง node `coffee_varieties` และ `coffee_menu` ใน Realtime Database แล้วเปิดหน้าสายพันธุ์หรือเมนูเพื่อยืนยันว่าเว็บอ่านข้อมูลจริงได้ อธิบาย Rules ว่าอนุญาตอ่านเฉพาะสอง node นี้และไม่อนุญาตเขียน
+
+### 7.5 ลำดับสาธิต Core Features
+
+1. เปิดเว็บไซต์และอธิบายแนวคิดหน้า Home
+2. ไปหน้าสายพันธุ์กาแฟ แล้วทดลองค้นหา
+3. เลื่อนอ่านข้อมูลและอธิบายเอฟเฟกต์ระหว่างเลื่อน
+4. ไปหน้าเมนูกาแฟ แล้วค้นหารายการอีกหนึ่งรายการ
+5. แสดงข้อมูลสอง node ใน Firebase Realtime Database
+6. สรุปผล responsive, กรณีค้นหาไม่พบ และสิ่งที่จะพัฒนาต่อ
+
+**งานนำเสนอที่ยังต้องเตรียม:** ทำสไลด์และบันทึกวิดีโอสาธิตตามข้อ 7 ของ Assignment โดยเพิ่มชื่อและรหัสนักศึกษาของผู้จัดทำตามข้อมูลจริงก่อนส่ง

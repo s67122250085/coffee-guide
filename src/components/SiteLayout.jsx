@@ -1,7 +1,9 @@
 import { Link, NavLink, Outlet } from 'react-router';
+import { useAuth } from '../auth/AuthContext.jsx';
 import assetUrl from '../utils/assetUrl.js';
 
 export function Header({ ctaHref = '#explore', ctaText = 'เริ่มสำรวจ ↓' }) {
+  const { user, signOutUser } = useAuth();
   return (
     <header className="nav" id="top">
       <Link className="brand" to="/" aria-label="Coffee Guide home">
@@ -12,6 +14,9 @@ export function Header({ ctaHref = '#explore', ctaText = 'เริ่มสำ�
         <NavLink to="/" end>Home</NavLink>
         <NavLink to="/varieties">สายพันธุ์กาแฟ</NavLink>
         <NavLink to="/coffee-menu">เมนูกาแฟ</NavLink>
+        {user
+          ? <button className="nav-auth-button" onClick={() => signOutUser()}>ออกจากระบบ</button>
+          : <NavLink to="/login">เข้าสู่ระบบ</NavLink>}
       </nav>
       <a className="nav-cta" href={ctaHref}>{ctaText}</a>
     </header>

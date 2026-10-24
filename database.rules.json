@@ -3,6 +3,12 @@
     ".read": false,
     ".write": false,
     "coffee_varieties": { ".read": true },
-    "coffee_menu": { ".read": true }
+    "coffee_menu": { ".read": true },
+    "assessments": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid"
+      }
+    }
   }
 }

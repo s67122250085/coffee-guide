@@ -1,10 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router';
+import { get, ref } from 'firebase/database';
+import { useAuth } from '../auth/AuthContext.jsx';
 import Introduction from '../components/Introduction.jsx';
 import { Footer, Header } from '../components/SiteLayout.jsx';
 import Ticker from '../components/Ticker.jsx';
 import useCoffeeData from '../hooks/useCoffeeData.js';
 import assetUrl from '../utils/assetUrl.js';
+import { database } from '../services/firebase.js';
 
 const catalogSettings = {
   varieties: {
@@ -30,10 +33,12 @@ const catalogSettings = {
 export default function CatalogPage({ kind }) {
   const settings = catalogSettings[kind];
   const { data, status, error, retry, isFirebase, source } = useCoffeeData();
+  const { user, loading: authLoading } = useAuth();
   const [query, setQuery] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
   const [revealed, setRevealed] = useState(() => new Set());
   const [progress, setProgress] = useState(0);
+  const [evaluationState, setEvaluationState] = useState('checking');
   const sectionRef = useRef(null);
   const records = data?.[settings.key] || [];
   const filtered = useMemo(() => {
@@ -43,6 +48,31 @@ export default function CatalogPage({ kind }) {
   const active = filtered[activeIndex] || filtered[0];
   const introRecord = records[0];
   const imagePath = (item) => assetUrl(`/images/${settings.imageFolder}/${item?.image || settings.firstImage}`);
+  const returnTo = kind === 'menu' ? '/coffee-menu' : '/varieties';
+
+  useEffect(() => {
+    let live = true;
+    async function checkEvaluation() {
+      if (authLoading) return;
+      if (!user) {
+        setEvaluationState('available');
+        return;
+      }
+      if (!database) {
+        setEvaluationState('error');
+        return;
+      }
+      setEvaluationState('checking');
+      try {
+        const snapshot = await get(ref(database, `assessments/${user.uid}/evaluation`));
+        if (live) setEvaluationState(snapshot.exists() ? 'complete' : 'available');
+      } catch {
+        if (live) setEvaluationState('error');
+      }
+    }
+    checkEvaluation();
+    return () => { live = false; };
+  }, [user, authLoading]);
 
   useEffect(() => {
     setActiveIndex(0);
@@ -126,6 +156,20 @@ export default function CatalogPage({ kind }) {
               <div className="story-list">
                 {filtered.map((item, index) => <StoryCard key={item.coffee_id || item.menu_id || `${item.name_en}-${index}`} item={item} index={index} total={filtered.length} kind={kind} active={index === activeIndex} visible={revealed.has(index)} />)}
               </div>
+            </div>
+          )}
+          {status === 'ready' && filtered.length > 0 && (
+            <div className="study-next">
+              <div><span className="eyebrow">หลังสำรวจข้อมูล</span><p>{evaluationState === 'complete' ? 'ขอบคุณที่ร่วมประเมิน Coffee Guide' : 'ช่วยประเมินความพึงพอใจและผลที่ได้รับจากเว็บไซต์'}</p></div>
+              {evaluationState === 'checking' && user
+                ? <span>กำลังตรวจสอบสถานะ…</span>
+                : evaluationState === 'complete'
+                  ? <span className="evaluation-complete">ส่งแบบประเมินแล้ว ✓</span>
+                  : evaluationState === 'error'
+                    ? <span className="evaluation-alert">ตรวจสอบสถานะไม่ได้</span>
+                    : <Link to={user
+                      ? `/assessment/survey?returnTo=${encodeURIComponent(returnTo)}`
+                      : `/login?returnTo=${encodeURIComponent(`/assessment/survey?returnTo=${encodeURIComponent(returnTo)}`)}`}>ประเมินหลังสำรวจ →</Link>}
             </div>
           )}
         </section>
